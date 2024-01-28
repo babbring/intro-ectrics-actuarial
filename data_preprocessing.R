@@ -16,10 +16,8 @@ data <- nlsy97 %>%
   subset(ASVAB > 0) %>% 
   mutate(ASVAB = ASVAB / 1000) %>% 
   subset(jobcode > 0 & jobcode < 9950) %>% 
-  subset(tenure2017 > 0) %>% 
+  subset(exp > 0) %>% 
   subset(hgrade2 >= 0 & hgrade <= 20) %>% 
-  mutate(lwage = log(wage)) %>% 
-  mutate(exp = tenure2017 + tenure2017^2) %>% 
   mutate(wcollar = ifelse(jobcode %in% white_collar_ranges, 1, 0))
 
 nt <- nrow(data)
@@ -31,11 +29,5 @@ rs <- round(1000000000*runif(1), d=0)
 set.seed(rs, kind=NULL)
 print(rs)
 iid <- sample(1:nt,n,replace=FALSE)
-sample <- data[iid,]
-attach(sample)
-
-reg1 <- lm(lwage ~ 1 + ASVAB)
-reg2 <- lm(lwage ~ 1 + ASVAB + hgrade2 + exp + wcollar + male)
-reg3 <- lm(lwage ~ 1 + ASVAB + hgrade2 + exp + wcollar + male + wcollar*ASVAB + male*ASVAB)
-
-stargazer(reg1, reg2, reg3)
+mysample <- data[iid,]
+save(mysample,file="mysample.rdata")
