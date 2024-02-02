@@ -30,14 +30,14 @@ stargazer(as.data.frame(subset(mysample, male==1)),
           nobs=FALSE, min.max=FALSE, title="Male")
 stargazer(as.data.frame(subset(mysample, wcollar==0)),
           nobs=FALSE, min.max=FALSE, title="Blue-collar")
-stargazer(as.data.frame(subset(mysample, wcollar==1))
+stargazer(as.data.frame(subset(mysample, wcollar==1)),
           nobs=FALSE, min.max=FALSE, title="White-collar")
 stargazer(as.data.frame(subset(mysample, white==0)),
           nobs=FALSE, min.max=FALSE, title="White")
 stargazer(as.data.frame(subset(mysample, black==0)),
           nobs=FALSE, min.max=FALSE, title="Black")
 stargazer(as.data.frame(subset(mysample, hispanic==1)),
-          nobs=FALSE, min.max=FALSE, title"Hispanic")
+          nobs=FALSE, min.max=FALSE, title="Hispanic")
 
 #calculating the correlation between ASVAB score and the highest 
 #grade completed
